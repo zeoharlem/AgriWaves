@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/shareNow"
+        android:icon="@drawable/ic_sharer"
+        android:title="Share">
+
+    </item>
+    <item
+        android:id="@+id/likeVideo"
+        android:icon="@drawable/ic_heart"
+        android:title="Like Video">
+
+    </item>
+    <item
+        android:id="@+id/watchLater"
+        android:icon="@drawable/ic_play_button"
+        android:title="Watch Later">
+
+    </item>
+    <!--<item android:id="@+id/favorite" android:title="React" android:icon="@drawable/ic_favorite_border_black_24dp"></item>-->
+    <!--<item android:id="@+id/download" android:title="Download">Download</item>-->
+</menu>

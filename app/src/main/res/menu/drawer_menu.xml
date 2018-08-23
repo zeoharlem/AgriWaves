@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/homepage"
+            android:icon="@drawable/ic_sync_circular_arrows_light"
+            android:title="Home" />
+        <item
+            android:id="@+id/about_us"
+            android:icon="@drawable/ic_businessman_tt"
+            android:title="About Us" />
+
+        <item
+            android:id="@+id/live_network"
+            android:icon="@drawable/ic_youtubetwo"
+            android:title="Live" />
+
+        <item
+            android:id="@+id/series_layout"
+            android:icon="@drawable/ic_play_button"
+            android:title="Series" />
+
+        <item
+            android:id="@+id/blog"
+            android:icon="@drawable/ic_blog"
+            android:title="Blog"></item>
+
+        <item
+            android:id="@+id/contacts"
+            android:icon="@drawable/ic_new_email_outline"
+            android:title="Contact Us" />
+        <item
+            android:id="@+id/social_network"
+            android:icon="@drawable/ic_facebook"
+            android:title="Social Networks" />
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/ic_settings"
+            android:title="Settings" />
+    </group>
+
+
+    <!--<item-->
+        <!--android:id="@+id/action_logout"-->
+        <!--android:icon="@drawable/ic_power_button"-->
+        <!--android:title="Log Out">-->
+
+    <!--</item>-->
+</menu>
