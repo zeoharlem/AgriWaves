@@ -20,6 +20,7 @@ import com.example.theophilus.agriwaves.Network.MyVolleySingleton;
 import com.example.theophilus.agriwaves.R;
 import com.example.theophilus.agriwaves.Utils.Helpers;
 import com.example.theophilus.agriwaves.Utils.L;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,7 +57,7 @@ public class AllBlogFragment extends Fragment {
         else{
             getTaskJsonRow(new VolleyCallback() {
                 @Override
-                public void onSuccess(ArrayList<Blog> postArrayList) {
+                public void onSuccess(ArrayList<Blog> blogArrayList) {
                     blogRecyclerAdapter    = new BlogRecyclerAdapter(getActivity(), blogArrayList);
                     blogRecyclerAdapter.setBlogArrayList(blogArrayList);
                     recyclerView.setAdapter(blogRecyclerAdapter);
@@ -80,7 +81,8 @@ public class AllBlogFragment extends Fragment {
                     if(jsonObject.getString("status").equals("OK")){
                         JSONObject dataFlow = jsonObject.getJSONObject("response");
                         ArrayList<Blog> pLi = parseJson(dataFlow);
-                        //recyclerViewAdapters.setPostArrayList(pLi);
+                        L.l(getContext(), new Gson().toJson(dataFlow));
+                        //blogRecyclerAdapter.setBlogArrayList(pLi);
                         volleyCallback.onSuccess(pLi);
                     }
                 }
@@ -95,7 +97,7 @@ public class AllBlogFragment extends Fragment {
                 L.l(getContext(), "Error: "+error);
             }
         });
-        MyVolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest,"blogPost");
+        MyVolleySingleton.getInstance(getContext()).addToRequestQueue(stringRequest,"blogPost");
     }
 
     private ArrayList<Blog> parseJson(JSONObject response){
@@ -148,6 +150,6 @@ public class AllBlogFragment extends Fragment {
     }
 
     private interface VolleyCallback {
-        public void onSuccess(ArrayList<Blog> postArrayList);
+        public void onSuccess(ArrayList<Blog> blogArrayList);
     }
 }

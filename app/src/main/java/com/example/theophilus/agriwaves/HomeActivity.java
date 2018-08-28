@@ -2,6 +2,7 @@ package com.example.theophilus.agriwaves;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -12,7 +13,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -122,15 +122,21 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
                         item.setChecked(true);
                         Intent intent   = new Intent(getApplicationContext(), HomeActivity.class);
                         startActivity(intent);
-                        drawerLayout.closeDrawers();
+                        if(drawerLayout != null) {
+                            drawerLayout.closeDrawers();
+                        }
                         return true;
                     case R.id.about_us:
                         item.setChecked(true);
-                        drawerLayout.closeDrawers();
+                        if(drawerLayout != null) {
+                            drawerLayout.closeDrawers();
+                        }
                         return true;
                     case R.id.contacts:
                         item.setChecked(true);
-                        drawerLayout.closeDrawers();
+                        if(drawerLayout != null) {
+                            drawerLayout.closeDrawers();
+                        }
                     case R.id.blog:
                         item.setChecked(true);
                         Intent blogIntent   = new Intent(getApplicationContext(), BlogActivity.class);
