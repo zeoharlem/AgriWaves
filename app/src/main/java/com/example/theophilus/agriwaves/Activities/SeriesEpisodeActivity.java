@@ -1,12 +1,13 @@
 package com.example.theophilus.agriwaves.Activities;
 
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,6 +40,11 @@ public class SeriesEpisodeActivity extends AppCompatActivity {
     private ArrayList<Episodes> episodesArrayList;
     private SingleEpisodeRecyclerAdapter singleEpisodeRecyclerAdapter;
     private static final String POST_LIST = "episodes";
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +92,21 @@ public class SeriesEpisodeActivity extends AppCompatActivity {
         DividerItemDecoration decoration    = new DividerItemDecoration(this, layoutManager.getOrientation());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(decoration);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void getTaskJsonRow(final VolleyCallback volleyCallback){

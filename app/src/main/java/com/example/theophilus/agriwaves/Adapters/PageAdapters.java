@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.theophilus.agriwaves.Fragments.AllFragment;
 import com.example.theophilus.agriwaves.Fragments.CategoryFragment;
-import com.example.theophilus.agriwaves.Fragments.SeriesFragment;
 
 /**
  * Created by Theophilus on 8/13/2018.
@@ -14,8 +13,11 @@ import com.example.theophilus.agriwaves.Fragments.SeriesFragment;
 
 public class PageAdapters extends FragmentStatePagerAdapter {
 
-    public PageAdapters(FragmentManager fm) {
+    private int countTablayout;
+
+    public PageAdapters(FragmentManager fm, int countTablayout) {
         super(fm);
+        this.countTablayout = countTablayout;
     }
 
     @Override
@@ -24,10 +26,10 @@ public class PageAdapters extends FragmentStatePagerAdapter {
             case 0:
                 AllFragment fragment    = new AllFragment();
                 return fragment;
+//            case 1:
+//                SeriesFragment seriesFragment   = new SeriesFragment();
+//                return seriesFragment;
             case 1:
-                SeriesFragment seriesFragment   = new SeriesFragment();
-                return seriesFragment;
-            case 2:
             CategoryFragment categoryFragment    = new CategoryFragment();
                 return categoryFragment;
             default:
@@ -37,6 +39,6 @@ public class PageAdapters extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return countTablayout;
     }
 }

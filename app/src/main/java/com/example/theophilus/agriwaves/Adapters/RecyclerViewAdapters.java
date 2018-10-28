@@ -7,8 +7,8 @@ import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.view.menu.MenuPopupHelper;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -60,6 +60,11 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
         notifyDataSetChanged();
     }
 
+    public void addArrayListPostRow(ArrayList postArrayList){
+        this.postArrayList.addAll(postArrayList);
+        notifyDataSetChanged();
+    }
+
     public LayoutInflater getLayoutInflater() {
         return layoutInflater;
     }
@@ -81,7 +86,7 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
         final Post post   = postArrayList.get(position);
         holder.textViewHeader.setText(post.getPostTitle());
         holder.textViewDate.setText(post.getDateCreated());
-        holder.textViewDesc.setText(post.getPostDesc());
+        holder.textViewDesc.setText(Html.fromHtml(post.getPostDesc()));
         String imageUrlRow  = post.getImageUrl();
         if(imageUrlRow != null){
             this.imageLoader.get(imageUrlRow, new ImageLoader.ImageListener() {
@@ -111,17 +116,17 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
         holder.buttonShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                shareIntentRow(post);
             }
         });
 
         //set the like vid clickListener
-        holder.buttonLike.setOnClickListener(new View.OnClickListener() {
+        /*holder.buttonLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
-        });
+        });*/
 
         holder.overFlow.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("RestrictedApi")
@@ -142,6 +147,7 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
                             case R.id.watchLater:
                                 return true;
                             case R.id.shareNow:
+                                shareIntentRow(post);
                                 return true;
                             default:
                                 return false;
@@ -160,6 +166,16 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
         });
     }
 
+
+    private void shareIntentRow(Post post){
+        Intent intent   = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra(Intent.EXTRA_SUBJECT, post.getPostTitle());
+        intent.putExtra(Intent.EXTRA_TEXT, "Just Watched this "+post.getPostTitle()
+                + " https://www.youtube.com/watch?v="+post.getVideoId());
+        context.startActivity(Intent.createChooser(intent, "Shared from AgriwavesTv Mobile App"));
+    }
 
     @Override
     public int getItemCount() {
@@ -187,7 +203,7 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
             imageView       = itemView.findViewById(R.id.image_view);
             overFlow        = itemView.findViewById(R.id.overflow);
             textViewDesc    = itemView.findViewById(R.id.fullDesc);
-            buttonLike      = itemView.findViewById(R.id.favouriteVid);
+            //buttonLike      = itemView.findViewById(R.id.favouriteVid);
             buttonShare     = itemView.findViewById(R.id.shareVid);
             buttonWatch     = itemView.findViewById(R.id.watchView);
             setTypeFaceTask(itemView);
@@ -201,7 +217,7 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
             textViewDesc.setTypeface(myCustomTypeface);
             buttonWatch.setTypeface(myCustomTypefaceBlack);
             buttonShare.setTypeface(myCustomTypefaceBlack);
-            buttonLike.setTypeface(myCustomTypefaceBlack);
+            //buttonLike.setTypeface(myCustomTypefaceBlack);
         }
     }
 }

@@ -2,11 +2,13 @@ package com.example.theophilus.agriwaves.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.view.menu.MenuPopupHelper;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,9 +20,11 @@ import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
+import com.example.theophilus.agriwaves.Activities.StoryActivity;
 import com.example.theophilus.agriwaves.Models.Blog;
 import com.example.theophilus.agriwaves.Network.MyVolleySingleton;
 import com.example.theophilus.agriwaves.R;
+import com.example.theophilus.agriwaves.Utils.Helpers;
 
 import java.util.ArrayList;
 
@@ -55,9 +59,9 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
     public void onBindViewHolder(@NonNull final BlogListViewHolder holder, int position) {
         final Blog post     = blogArrayList.get(position);
         holder.textViewHeader.setText(post.getPostTitle());
-        holder.textViewDesc.setText(post.getPostExcerpt());
+        holder.textViewDesc.setText(Html.fromHtml(post.getPostExcerpt()));
         holder.textViewDate.setText(post.getPostDate());
-        String imageUrlRow  = post.getMidImage();
+        String imageUrlRow  = post.getFullImage();
         if(imageUrlRow != null){
             this.imageLoader.get(imageUrlRow, new ImageLoader.ImageListener() {
                 @Override
@@ -72,21 +76,30 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             });
         }
 
+        holder.buttonWatch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent   = new Intent(context, StoryActivity.class);
+                intent.putExtra("blogId", post.getPostId());
+                context.startActivity(intent);
+            }
+        });
+
         //set the share vid clickListener
         holder.buttonShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                shareIntentRow(post);
             }
         });
 
         //set the like vid clickListener
-        holder.buttonLike.setOnClickListener(new View.OnClickListener() {
+        /*holder.buttonLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                shareIntentRow(post);
             }
-        });
+        });*/
 
         holder.overFlow.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("RestrictedApi")
@@ -123,6 +136,16 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
                 menuPopupHelper.show();
             }
         });
+    }
+
+    private void shareIntentRow(Blog post){
+        Intent intent   = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra(Intent.EXTRA_SUBJECT, post.getPostTitle());
+        intent.putExtra(Intent.EXTRA_TEXT, "Just Watched this "+post.getPostTitle()
+                            + Helpers.URL_STRING + "/blog/viewpage?blog="+post.getPostId());
+        context.startActivity(Intent.createChooser(intent, "Shared from AgriwavesTv Mobile App"));
     }
 
     @Override
@@ -183,6 +206,11 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         notifyDataSetChanged();
     }
 
+    public void addArrayBlogListRow(ArrayList<Blog> blogArrayList){
+        this.blogArrayList.addAll(blogArrayList);
+        notifyDataSetChanged();
+    }
+
     public class BlogListViewHolder extends RecyclerView.ViewHolder{
         public TextView textViewHeader, textViewDesc, textViewDate;
         private Typeface myCustomTypeface, myCustomTypefaceBold, myCustomTypefaceBlack;
@@ -196,9 +224,9 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             imageView       = itemView.findViewById(R.id.image_view);
             overFlow        = itemView.findViewById(R.id.overflow);
             textViewDesc    = itemView.findViewById(R.id.fullDesc);
-            buttonLike      = itemView.findViewById(R.id.favouriteVid);
+            //buttonLike      = itemView.findViewById(R.id.favouriteVid);
             buttonShare     = itemView.findViewById(R.id.shareVid);
-            buttonWatch     = itemView.findViewById(R.id.watchView);
+            buttonWatch     = itemView.findViewById(R.id.readMore);
             setTypeFaceTask(itemView);
         }
 
@@ -210,7 +238,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             textViewDesc.setTypeface(myCustomTypeface);
             buttonWatch.setTypeface(myCustomTypefaceBlack);
             buttonShare.setTypeface(myCustomTypefaceBlack);
-            buttonLike.setTypeface(myCustomTypefaceBlack);
+            //buttonLike.setTypeface(myCustomTypefaceBlack);
         }
     }
 }

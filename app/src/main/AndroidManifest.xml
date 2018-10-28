@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -23,9 +24,24 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomeActivity" />
-        <activity android:name=".Activities.VideoPlayerActivity" />
-        <activity android:name=".Activities.SeriesEpisodeActivity" />
-        <activity android:name=".BlogActivity"></activity>
+        <activity
+            android:name=".Activities.VideoPlayerActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".Activities.SeriesEpisodeActivity"
+            android:noHistory="true" />
+        <activity android:name=".BlogActivity" />
+        <activity
+            android:name=".Activities.StoryActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".Activities.CategoryPostActivity"
+            android:noHistory="true" />
+        <activity android:name=".Activities.BlogListActivity" />
+        <activity android:name=".Activities.SeriesActivity" />
+        <activity android:name=".Activities.AboutActivity" />
+        <activity android:name=".Activities.ContactActivity" />
+        <activity android:name=".Activities.TeamActivity"></activity>
     </application>
 
 </manifest>

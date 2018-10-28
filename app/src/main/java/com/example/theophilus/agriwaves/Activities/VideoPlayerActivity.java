@@ -1,6 +1,5 @@
 package com.example.theophilus.agriwaves.Activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.theophilus.agriwaves.R;
@@ -18,11 +17,21 @@ public class VideoPlayerActivity extends YouTubeBaseActivity {
     private YouTubePlayer.OnInitializedListener onInitializedListener;
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_player);
 
-        videoId = getIntent().getStringExtra("videoId");
+        if(getIntent() != null) {
+            videoId = getIntent().getStringExtra("videoId");
+        }
+        else{
+            videoId = "W5Rc-gPhju0";
+        }
         youTubePlayerView       = findViewById(R.id.youtubePlayerView);
         onInitializedListener   = new YouTubePlayer.OnInitializedListener() {
             @Override

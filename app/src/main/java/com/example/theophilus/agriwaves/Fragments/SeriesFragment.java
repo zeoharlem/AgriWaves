@@ -16,13 +16,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.theophilus.agriwaves.Adapters.SeriesRecyclerAdapter;
-import com.example.theophilus.agriwaves.Models.Post;
 import com.example.theophilus.agriwaves.Models.Series;
 import com.example.theophilus.agriwaves.Network.MyVolleySingleton;
 import com.example.theophilus.agriwaves.R;
 import com.example.theophilus.agriwaves.Utils.Helpers;
 import com.example.theophilus.agriwaves.Utils.L;
-import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,6 +43,15 @@ public class SeriesFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,14 +63,13 @@ public class SeriesFragment extends Fragment {
             @Override
             public void onSuccess(ArrayList<Series> seriesArrayList) {
                 //L.l(getContext(), new Gson().toJson(seriesArrayList));
-                seriesRecyclerAdapter   = new SeriesRecyclerAdapter(getActivity(), seriesArrayList);
-                seriesRecyclerAdapter.setSeriesArrayList(seriesArrayList);
+                seriesRecyclerAdapter   = new SeriesRecyclerAdapter(getContext(), seriesArrayList);
                 recyclerView.setAdapter(seriesRecyclerAdapter);
             }
         });
 
-        LinearLayoutManager layoutManager   = new LinearLayoutManager(getActivity());
-        DividerItemDecoration decoration    = new DividerItemDecoration(getActivity(), layoutManager.getOrientation());
+        LinearLayoutManager layoutManager   = new LinearLayoutManager(getContext());
+        DividerItemDecoration decoration    = new DividerItemDecoration(getContext(), layoutManager.getOrientation());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(decoration);
         return view;
@@ -94,7 +100,7 @@ public class SeriesFragment extends Fragment {
                 L.l(getContext(), "Error: "+error);
             }
         });
-        MyVolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest,"postList");
+        MyVolleySingleton.getInstance(getContext()).addToRequestQueue(stringRequest,"postList");
     }
 
     private ArrayList<Series> parseJson(JSONObject response){
@@ -127,7 +133,7 @@ public class SeriesFragment extends Fragment {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                L.l(getActivity(), "JSON Exception: "+e.getMessage());
+                L.l(getContext(), "JSON Exception: "+e.getMessage());
             }
         }
         return postRow;
@@ -136,6 +142,9 @@ public class SeriesFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+        if(seriesRecyclerAdapter != null){
+
+        }
     }
 
     private interface VolleyCallback {

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.theophilus.agriwaves.Activities.AboutActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme">
+
+        <include layout="@layout/toolbar_layout" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbarStyle="insideOverlay">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingStart="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="133dp"
+                android:layout_height="83dp"
+                android:paddingStart="20dp"
+                android:paddingTop="20dp"
+                android:src="@drawable/small_logo" />
+
+            <com.example.theophilus.agriwaves.Utils.JustifyTextView
+                android:id="@+id/about_first"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:scrollHorizontally="true"
+                android:textColor="#111111"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/para_one"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <com.example.theophilus.agriwaves.Utils.JustifyTextView
+                android:id="@+id/about_second"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:scrollHorizontally="true"
+                android:textColor="#111111"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/para_one_a"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <com.example.theophilus.agriwaves.Utils.JustifyTextView
+                android:id="@+id/about_third"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:paddingTop="20dp"
+                android:scrollHorizontally="true"
+                android:textColor="#111111"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/para_two"
+                android:textSize="13sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <com.example.theophilus.agriwaves.Utils.JustifyTextView
+                android:id="@+id/about_fourth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:paddingTop="20dp"
+                android:scrollHorizontally="true"
+                android:textColor="#111111"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/para_three"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

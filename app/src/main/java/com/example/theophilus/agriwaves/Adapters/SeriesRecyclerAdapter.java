@@ -13,7 +13,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,7 +20,6 @@ import android.widget.TextView;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.example.theophilus.agriwaves.Activities.SeriesEpisodeActivity;
-import com.example.theophilus.agriwaves.Models.Post;
 import com.example.theophilus.agriwaves.Models.Series;
 import com.example.theophilus.agriwaves.Network.MyVolleySingleton;
 import com.example.theophilus.agriwaves.R;
@@ -54,6 +52,16 @@ public class SeriesRecyclerAdapter extends RecyclerView.Adapter<SeriesRecyclerAd
     public MySeriesHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view   = layoutInflater.inflate(R.layout.series_item_view, parent, false);
         return new MySeriesHolder(view);
+    }
+
+    public void addBlogArrayList(Series series){
+        this.seriesArrayList.add(series);
+        notifyDataSetChanged();
+    }
+
+    public void addArrayBlogListRow(ArrayList seriesArrayList){
+        this.seriesArrayList.addAll(seriesArrayList);
+        notifyDataSetChanged();
     }
 
     @SuppressLint("SetTextI18n")

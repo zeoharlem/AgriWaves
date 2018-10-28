@@ -1,8 +1,8 @@
 package com.example.theophilus.agriwaves.Fragments;
 
 
-import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.AbsListView;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -22,7 +23,6 @@ import com.example.theophilus.agriwaves.Network.MyVolleySingleton;
 import com.example.theophilus.agriwaves.R;
 import com.example.theophilus.agriwaves.Utils.Helpers;
 import com.example.theophilus.agriwaves.Utils.L;
-import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,11 +39,29 @@ public class AllFragment extends Fragment {
     RecyclerViewAdapters recyclerViewAdapters;
     ArrayList<Post> postArrayList;
     private static final String POST_LIST = "allPostRow";
+    Boolean isScrolling                     = false;
+    int currentItems, totalItems, scrollOutItems;
+    int stOffsetRow                         = 0;
+    ProgressBar progressBar;
 
     public AllFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,32 +69,71 @@ public class AllFragment extends Fragment {
         view            = inflater.inflate(R.layout.fragment_all, container, false);
         recyclerView    = view.findViewById(R.id.recyclerViewAllFrag);
 
+        //Set Progressive Bar Loader
+        progressBar     = view.findViewById(R.id.progressBarRow);
+
         if(savedInstanceState != null){
             postArrayList           = savedInstanceState.getParcelableArrayList(POST_LIST);
-            recyclerViewAdapters    = new RecyclerViewAdapters(getActivity(), postArrayList);
-            recyclerViewAdapters.setPostArrayList(postArrayList);
+            recyclerViewAdapters    = new RecyclerViewAdapters(getContext(), postArrayList);
             recyclerView.setAdapter(recyclerViewAdapters);
         }
         else{
             getTaskJsonRow(new VolleyCallback() {
                 @Override
                 public void onSuccess(ArrayList<Post> postArrayList) {
-                    recyclerViewAdapters    = new RecyclerViewAdapters(getActivity(), postArrayList);
+                    recyclerViewAdapters    = new RecyclerViewAdapters(getContext(), postArrayList);
                     recyclerViewAdapters.setPostArrayList(postArrayList);
                     recyclerView.setAdapter(recyclerViewAdapters);
                 }
-            });
+            }, 0);
         }
 
-        LinearLayoutManager layoutManager   = new LinearLayoutManager(getActivity());
+        final LinearLayoutManager layoutManager   = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
+                    isScrolling = true;
+                }
+            }
 
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                currentItems    = layoutManager.getChildCount();
+                totalItems      = layoutManager.getItemCount();
+                scrollOutItems  = layoutManager.findFirstVisibleItemPosition();
+                if(isScrolling && (currentItems + scrollOutItems == totalItems)){
+                    isScrolling = false;
+                    fetchNewTaskJsonRow();
+                }
+            }
+        });
         //setTextViewFontStyle();
         return view;
     }
 
-    private void getTaskJsonRow(final VolleyCallback volleyCallback){
-        String urlStringRow         = Helpers.URL_STRING + "/list/";
+    private void fetchNewTaskJsonRow() {
+        progressBar.setVisibility(View.VISIBLE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                stOffsetRow = stOffsetRow + 10;
+                getTaskJsonRow(new VolleyCallback() {
+                    @Override
+                    public void onSuccess(ArrayList<Post> postArrayList) {
+                        progressBar.setVisibility(View.GONE);
+                        recyclerViewAdapters.addArrayListPostRow(postArrayList);
+                    }
+                }, stOffsetRow);
+            }
+        }, 5000);
+    }
+
+    private void getTaskJsonRow(final VolleyCallback volleyCallback, int offset){
+        String urlStringRow         = Helpers.URL_STRING + "/list?offset="+offset;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, urlStringRow, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -86,7 +143,6 @@ public class AllFragment extends Fragment {
                     if(jsonObject.getString("status").equals("OK")){
                         JSONObject dataFlow = jsonObject.getJSONObject("response");
                         ArrayList<Post> pLi = parseJson(dataFlow);
-                        //recyclerViewAdapters.setPostArrayList(pLi);
                         volleyCallback.onSuccess(pLi);
                     }
                 }
@@ -101,7 +157,7 @@ public class AllFragment extends Fragment {
                 L.l(getContext(), "Error: "+error);
             }
         });
-        MyVolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest,"postList");
+        MyVolleySingleton.getInstance(getContext()).addToRequestQueue(stringRequest,"postList");
     }
 
     private ArrayList<Post> parseJson(JSONObject response){
@@ -140,7 +196,7 @@ public class AllFragment extends Fragment {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                L.l(getActivity(), "JSON Exception: "+e.getMessage());
+                L.l(getContext(), "JSON Exception: "+e.getMessage());
             }
         }
         return postRow;
@@ -149,7 +205,9 @@ public class AllFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList(POST_LIST, recyclerViewAdapters.getPostArrayList());
+        if(recyclerViewAdapters != null) {
+            outState.putParcelableArrayList(POST_LIST, recyclerViewAdapters.getPostArrayList());
+        }
     }
 
     private interface VolleyCallback {

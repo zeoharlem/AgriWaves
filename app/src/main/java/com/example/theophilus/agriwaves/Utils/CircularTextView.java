@@ -4,70 +4,68 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.widget.TextView;
-
-import com.example.theophilus.agriwaves.R;
 
 /**
  * Created by Theophilus on 8/16/2018.
  */
 
-public class CircularTextView extends android.support.v7.widget.AppCompatTextView {
-    private ShapeDrawable backgroundDrawable;
-    private OvalShape ovalShape;
-
-    private int backgroundColor;
+public class CircularTextView extends android.support.v7.widget.AppCompatTextView
+{
+    private float strokeWidth;
+    int strokeColor,solidColor;
 
     public CircularTextView(Context context) {
         super(context);
-        backgroundColor = ContextCompat.getColor(context, R.color.colorAccent);
-        allocateShapes();
     }
 
     public CircularTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        backgroundColor = ContextCompat.getColor(context, R.color.colorAccent);
-        allocateShapes();
     }
 
     public CircularTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        backgroundColor = ContextCompat.getColor(context, R.color.colorAccent);
-        allocateShapes();
     }
+
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    public void draw(Canvas canvas){
 
-        int h = this.getMeasuredHeight();
-        int w = this.getMeasuredWidth();
-        int r = Math.max(w, h);
+        Paint circlePaint = new Paint();
+        circlePaint.setColor(solidColor);
+        circlePaint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
-        setMeasuredDimension(r, r);
+        Paint strokePaint = new Paint();
+        strokePaint.setColor(strokeColor);
+        strokePaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+
+        int  h = this.getHeight();
+        int  w = this.getWidth();
+
+        int diameter = ((h > w) ? h : w);
+        int radius = diameter/2;
+
+        this.setHeight(diameter);
+        this.setWidth(diameter);
+
+        canvas.drawCircle(diameter / 2 , diameter / 2, radius, strokePaint);
+
+        canvas.drawCircle(diameter / 2, diameter / 2, radius-strokeWidth, circlePaint);
+
+        super.draw(canvas);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    public void setStrokeWidth(int dp){
+        float scale = getContext().getResources().getDisplayMetrics().density;
+        strokeWidth = dp*scale;
 
-        backgroundDrawable.setShape(ovalShape);
-        backgroundDrawable.getPaint().setColor(backgroundColor);
-
-        setBackground(backgroundDrawable);
     }
 
-    private void allocateShapes(){
-        backgroundDrawable = new ShapeDrawable();
-        ovalShape = new OvalShape();
+    public void setStrokeColor(String color){
+        strokeColor = Color.parseColor(color);
     }
 
-    public void setBackgroundColor(int color){
-        backgroundColor = color;
-        invalidate();
+    public void setSolidColor(String color) {
+        solidColor = Color.parseColor(color);
     }
 }

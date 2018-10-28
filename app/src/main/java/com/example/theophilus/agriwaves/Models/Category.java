@@ -12,11 +12,19 @@ public class Category implements Parcelable{
     private String categoryId;
     private String categoryName;
     private String categoryDesc;
+    private String categoryFirstLetter;
+    private String categoryBodyLetter;
+
+    public Category(){
+
+    }
 
     protected Category(Parcel in) {
         this.categoryId     = in.readString();
         this.categoryName   = in.readString();
         this.categoryDesc   = in.readString();
+        this.categoryFirstLetter    = in.readString();
+        this.categoryBodyLetter     = in.readString();
     }
 
     public static final Creator<Category> CREATOR = new Creator<Category>() {
@@ -55,6 +63,22 @@ public class Category implements Parcelable{
         this.categoryDesc = categoryDesc;
     }
 
+    public String getCategoryFirstLetter() {
+        return categoryFirstLetter;
+    }
+
+    public void setCategoryFirstLetter(String categoryFirstLetter) {
+        this.categoryFirstLetter = categoryFirstLetter;
+    }
+
+    public String getCategoryBodyLetter() {
+        return categoryBodyLetter;
+    }
+
+    public void setCategoryBodyLetter(String categoryBodyLetter) {
+        this.categoryBodyLetter = categoryBodyLetter;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -65,5 +89,7 @@ public class Category implements Parcelable{
         parcel.writeString(this.categoryId);
         parcel.writeString(this.categoryName);
         parcel.writeString(this.categoryDesc);
+        parcel.writeString(this.categoryFirstLetter);
+        parcel.writeString(this.categoryBodyLetter);
     }
 }

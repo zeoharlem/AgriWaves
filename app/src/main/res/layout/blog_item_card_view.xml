@@ -44,7 +44,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:scrollHorizontally="true"
-                    android:text="AriWaves Header Title"
+                    android:text="AgriwavesTV"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -58,7 +58,7 @@
                     android:layout_toRightOf="@+id/channelVi"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Date Created"
+                    android:text="Loading..."
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="13sp" />
 
@@ -68,25 +68,26 @@
             <ImageView
                 android:id="@+id/image_view"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="-10dp"
+                android:layout_height="189dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/wamitvblcok" />
 
-            <TextView
+            <com.example.theophilus.agriwaves.Utils.TextViewJustify
                 android:id="@+id/fullDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/image_view"
                 android:ellipsize="end"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
                 android:scrollHorizontally="true"
-                android:text="Description"
+                android:text="Loading..."
                 android:textColor="@color/cardview_dark_background"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -101,7 +102,7 @@
                 android:paddingStart="20dp">
 
                 <Button
-                    android:id="@+id/watchView"
+                    android:id="@+id/readMore"
                     style="@style/Widget.AppCompat.Button.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -115,21 +116,21 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/favouriteVid"
-                    style="@style/Widget.AppCompat.Button.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <!--<Button-->
+                    <!--android:id="@+id/favouriteVid"-->
+                    <!--style="@style/Widget.AppCompat.Button.Small"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
 
-                    android:layout_marginEnd="36dp"
+                    <!--android:layout_marginEnd="36dp"-->
 
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/ic_add_favorite"
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@null"-->
+                    <!--android:drawablePadding="10dp"-->
+                    <!--android:drawableStart="@drawable/ic_add_favorite"-->
 
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    <!--android:textSize="12sp"-->
+                    <!--android:textStyle="bold" />-->
 
                 <Button
                     android:id="@+id/shareVid"

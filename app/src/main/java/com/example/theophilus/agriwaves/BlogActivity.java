@@ -2,17 +2,16 @@ package com.example.theophilus.agriwaves;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -23,6 +22,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.theophilus.agriwaves.Activities.AboutActivity;
+import com.example.theophilus.agriwaves.Activities.ContactActivity;
+import com.example.theophilus.agriwaves.Activities.SeriesActivity;
+import com.example.theophilus.agriwaves.Activities.TeamActivity;
+import com.example.theophilus.agriwaves.Activities.VideoPlayerActivity;
 import com.example.theophilus.agriwaves.Adapters.BlogPageAdapter;
 import com.example.theophilus.agriwaves.Utils.CustomTypefaceSpan;
 
@@ -44,6 +48,7 @@ public class BlogActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         toolbar = findViewById(R.id.common_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("AgriwavesTv");
 
         drawerLayout    = findViewById(R.id.drawer_layout);
         navigationView  = findViewById(R.id.navigationView);
@@ -82,7 +87,7 @@ public class BlogActivity extends AppCompatActivity implements TabLayout.OnTabSe
         });
 
         tabLayout.addTab(tabLayout.newTab().setText("Blog "));
-        tabLayout.addTab(tabLayout.newTab().setText("Category "));
+        tabLayout.addTab(tabLayout.newTab().setText("Categories"));
 
         changeTabsFont();
 
@@ -114,19 +119,57 @@ public class BlogActivity extends AppCompatActivity implements TabLayout.OnTabSe
                         item.setChecked(true);
                         Intent intent   = new Intent(getApplicationContext(), HomeActivity.class);
                         startActivity(intent);
-                        drawerLayout.closeDrawers();
+                        if(drawerLayout != null) {
+                            drawerLayout.closeDrawers();
+                        }
                         return true;
                     case R.id.about_us:
                         item.setChecked(true);
-                        drawerLayout.closeDrawers();
+                        Intent aboutIntent  = new Intent(getApplicationContext(), AboutActivity.class);
+                        startActivity(aboutIntent);
+                        if(drawerLayout != null) {
+                            drawerLayout.closeDrawers();
+                        }
+                        return true;
+                    case R.id.series_layout:
+                        item.setChecked(true);
+                        Intent series  = new Intent(getApplicationContext(), SeriesActivity.class);
+                        startActivity(series);
+                        if(drawerLayout != null) {
+                            drawerLayout.closeDrawers();
+                        }
+                        return true;
+                    case R.id.live_network:
+                        item.setChecked(true);
+                        Intent liveIntent   = new Intent(getApplicationContext(), VideoPlayerActivity.class);
+                        startActivity(liveIntent);
+                        if(drawerLayout != null) {
+                            drawerLayout.closeDrawers();
+                        }
                         return true;
                     case R.id.contacts:
                         item.setChecked(true);
-                        drawerLayout.closeDrawers();
+                        Intent contactIntent   = new Intent(getApplicationContext(), ContactActivity.class);
+                        startActivity(contactIntent);
+                        if(drawerLayout != null) {
+                            drawerLayout.closeDrawers();
+                        }
+                        return true;
                     case R.id.blog:
                         item.setChecked(true);
                         Intent blogIntent   = new Intent(getApplicationContext(), BlogActivity.class);
                         startActivity(blogIntent);
+                        if(drawerLayout != null) {
+                            drawerLayout.closeDrawers();
+                        }
+                        return true;
+                    case R.id.settings:
+                        item.setChecked(true);
+                        Intent teamIntent   = new Intent(getApplicationContext(), TeamActivity.class);
+                        startActivity(teamIntent);
+                        if(drawerLayout != null) {
+                            drawerLayout.closeDrawers();
+                        }
                         return true;
                 }
                 return false;
@@ -140,6 +183,11 @@ public class BlogActivity extends AppCompatActivity implements TabLayout.OnTabSe
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @Override

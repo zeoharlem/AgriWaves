@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.theophilus.agriwaves.Fragments.SeriesFragment"
-    >
+    tools:context="com.example.theophilus.agriwaves.Fragments.SeriesFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/seriesRecyclerView"
@@ -12,4 +11,14 @@
 
     </android.support.v7.widget.RecyclerView>
 
+    <ProgressBar
+        android:id="@+id/progressBarRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:contentDescription="Loading..."
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:tooltipText="Loading..."
+        android:visibility="gone" />
 </FrameLayout>

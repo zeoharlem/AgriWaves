@@ -1,9 +1,24 @@
 <resources>
-    <string name="app_name">AgriWaves</string>
+    <string name="app_name">Agriwaves TV</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
+    <string name="para_one">Agriwaves TV is an internet-based platform dedicated to promoting agriculture as an attractive industry and showcasing inspiring stories and innovations in agribusiness across Africa. With a variety of cutting edge entertaining and informative content, we are committed to advocating for youth involvement in agribusiness, changing people’s outlook of agriculture in classic style, and stirring massive public interest in the agricultural industry.</string>
+    <string name="para_one_a">Also at the heart of Agriwaves TV is the drive to save the planet from climate change and environmental degradation through illuminating programmes that propel change in behavioral systems and environmental practices, rapid information and knowledge dissemination about environmental issues and mobilizing the public for climate change activism and consciousness. Agriwaves TV (ATV) is a creation of Rozella Media Limited .</string>
+    <string name="para_two">From amazing farms to corporate spaces, laboratories, streets and homes of Africans, ATV showcases innovation, business and passion - sharing the exciting journeys of people adding value to society through agriculture, agro-allied ventures and protecting the environment. ATV travels thousands of miles from cities to villages, climbing hills, crossing rivers and streams and entering tropical forests and grasslands to show you everything about agriculture and environment in Africa.</string>
+    <string name="para_three">At ATV, we display a heritage of a productive agricultural continent that makes food security and economic prosperity a top priority. We feature agropreneurs, environmentalists, policymakers, inventors, researchers, scientists, marketers, investors, economists, farmers, businessmen and everyone involved in agribusiness, nutrition and environment industries. We track and celebrate a generation working to feed and secure a brighter future for all and sundry.</string>
+    <string name="title_activity_team">TeamActivity</string>
+    <string name="felix_name">Felix Nyikwagh</string>
+    <string name="eric_name">Eric  Nyikwagh</string>
+    <string name="bilyaminu_name">Bilyaminu Izom</string>
+    <string name="martins_name">Martins Abur</string>
+    <string name="felix_a">His seasoned experience cuts across Broadcasting, and Film Production. He combines his media experience and agrarian upbringing to give agriculture its deserved freshness, especially among African youth. He also is keen on saving the planet from harm. Felix is the CEO of Rozella Media Ltd and Creative Director/Co-founder of Agriwaves TV</string>
+    <string name="eric_a">As a food security expert and consultant on agribusiness, extension and entrepreneurship, Eric promotes the growth of agriculture and agribusiness across Africa where he has worked at local and international organisations. He is the Chief Operating Officer (COO) and Co-founder of Agriwaves TV. Eric also serves as the Country Representative of Young Professionals for Agricultural Development (YPARD) Nigeria</string>
+    <string name="bilyaminu">He has wide experience in media production where he has functioned as Videographer, Editor and Director. He also demonstrates brilliant skills in Graphic Design and Visual Effects and has consulted for many local and international organisations. His works have been broadcast on local and international broadcast platforms and some have earned awards at prestigious film festivals: 90ninth Day, Conscripted and Blue Flames. Bilyaminu serves as Head of Production at AgriwavesTV.</string>
+    <string name="martins">He is a cameraman and sound designer. He has worked at top production outfits including Papel Image Tech Ngr and Surevision Media and Communication, Abuja. Martins has movie credits which include: Mr and Mrs, Mimidoo, and Conscripted.</string>
+    <string name="others">We also maintain a pool of highly industrious IT professionals, consultants, business development executives and freelancers across a variety of production areas.</string>
+
 </resources>

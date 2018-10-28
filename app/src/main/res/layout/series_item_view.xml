@@ -36,7 +36,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:scrollHorizontally="true"
-                android:text="AriWaves Header Title"
+                android:text="Agriwaves TV"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:paddingEnd="10dp"
                     android:paddingStart="0dp"
-                    android:text="Date Created"
+                    android:text="Loading..."
                     android:textSize="14sp" />
 
             </LinearLayout>

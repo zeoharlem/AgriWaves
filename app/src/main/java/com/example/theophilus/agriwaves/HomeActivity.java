@@ -23,6 +23,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.theophilus.agriwaves.Activities.AboutActivity;
+import com.example.theophilus.agriwaves.Activities.ContactActivity;
+import com.example.theophilus.agriwaves.Activities.SeriesActivity;
+import com.example.theophilus.agriwaves.Activities.TeamActivity;
+import com.example.theophilus.agriwaves.Activities.VideoPlayerActivity;
 import com.example.theophilus.agriwaves.Adapters.PageAdapters;
 import com.example.theophilus.agriwaves.Utils.CustomTypefaceSpan;
 
@@ -45,7 +50,7 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         toolbar = findViewById(R.id.common_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("AgriWaves");
+        getSupportActionBar().setTitle("AgriwavesTV");
 
         drawerLayout    = findViewById(R.id.drawer_layout);
         navigationView  = findViewById(R.id.navigationView);
@@ -88,13 +93,13 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
         });
 
         tabLayout.addTab(tabLayout.newTab().setText("All "));
-        tabLayout.addTab(tabLayout.newTab().setText("Series "));
-        tabLayout.addTab(tabLayout.newTab().setText("Category "));
+        //tabLayout.addTab(tabLayout.newTab().setText("Series "));
+        tabLayout.addTab(tabLayout.newTab().setText("Categories"));
 
         changeTabsFont();
 
         viewPager       = findViewById(R.id.viewPagerRow);
-        PageAdapters pageAdapters   = new PageAdapters(getSupportFragmentManager());
+        PageAdapters pageAdapters   = new PageAdapters(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapters);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(this);
@@ -128,25 +133,62 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
                         return true;
                     case R.id.about_us:
                         item.setChecked(true);
+                        Intent aboutIntent  = new Intent(getApplicationContext(), AboutActivity.class);
+                        startActivity(aboutIntent);
+                        if(drawerLayout != null) {
+                            drawerLayout.closeDrawers();
+                        }
+                        return true;
+                    case R.id.series_layout:
+                        item.setChecked(true);
+                        Intent series  = new Intent(getApplicationContext(), SeriesActivity.class);
+                        startActivity(series);
+                        if(drawerLayout != null) {
+                            drawerLayout.closeDrawers();
+                        }
+                        return true;
+                    case R.id.live_network:
+                        item.setChecked(true);
+                        Intent liveIntent   = new Intent(getApplicationContext(), VideoPlayerActivity.class);
+                        startActivity(liveIntent);
                         if(drawerLayout != null) {
                             drawerLayout.closeDrawers();
                         }
                         return true;
                     case R.id.contacts:
                         item.setChecked(true);
+                        Intent contactIntent   = new Intent(getApplicationContext(), ContactActivity.class);
+                        startActivity(contactIntent);
                         if(drawerLayout != null) {
                             drawerLayout.closeDrawers();
                         }
+                        return true;
                     case R.id.blog:
                         item.setChecked(true);
                         Intent blogIntent   = new Intent(getApplicationContext(), BlogActivity.class);
                         startActivity(blogIntent);
+                        if(drawerLayout != null) {
+                            drawerLayout.closeDrawers();
+                        }
+                        return true;
+                    case R.id.settings:
+                        item.setChecked(true);
+                        Intent teamIntent   = new Intent(getApplicationContext(), TeamActivity.class);
+                        startActivity(teamIntent);
+                        if(drawerLayout != null) {
+                            drawerLayout.closeDrawers();
+                        }
                         return true;
                 }
                 return false;
             }
         });
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @Override
