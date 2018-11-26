@@ -4,6 +4,7 @@ package com.example.theophilus.agriwaves.Fragments;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.theophilus.agriwaves.Adapters.RecyclerViewAdapters;
 import com.example.theophilus.agriwaves.Models.Post;
 import com.example.theophilus.agriwaves.Network.MyVolleySingleton;
+import com.example.theophilus.agriwaves.Network.NetworkState;
 import com.example.theophilus.agriwaves.R;
 import com.example.theophilus.agriwaves.Utils.Helpers;
 import com.example.theophilus.agriwaves.Utils.L;
@@ -39,9 +41,9 @@ public class AllFragment extends Fragment {
     RecyclerViewAdapters recyclerViewAdapters;
     ArrayList<Post> postArrayList;
     private static final String POST_LIST = "allPostRow";
-    Boolean isScrolling                     = false;
+    Boolean isScrolling                   = false;
     int currentItems, totalItems, scrollOutItems;
-    int stOffsetRow                         = 0;
+    int stOffsetRow                       = 0;
     ProgressBar progressBar;
 
     public AllFragment() {
@@ -69,10 +71,20 @@ public class AllFragment extends Fragment {
         view            = inflater.inflate(R.layout.fragment_all, container, false);
         recyclerView    = view.findViewById(R.id.recyclerViewAllFrag);
 
+        //Check for Network Availability
+        NetworkState.getInstance().msgTaskRow(getContext(),"No Internet Connection", new NetworkState.NetworkInformer() {
+            @Override
+            public void informUser(String message) {
+                Snackbar.make(view.findViewById(R.id.rootViewRow), message, Snackbar.LENGTH_LONG).show();
+                return;
+            }
+        });
+
         //Set Progressive Bar Loader
         progressBar     = view.findViewById(R.id.progressBarRow);
 
         if(savedInstanceState != null){
+            progressBar.setVisibility(View.GONE);
             postArrayList           = savedInstanceState.getParcelableArrayList(POST_LIST);
             recyclerViewAdapters    = new RecyclerViewAdapters(getContext(), postArrayList);
             recyclerView.setAdapter(recyclerViewAdapters);
@@ -81,6 +93,7 @@ public class AllFragment extends Fragment {
             getTaskJsonRow(new VolleyCallback() {
                 @Override
                 public void onSuccess(ArrayList<Post> postArrayList) {
+                    progressBar.setVisibility(View.GONE);
                     recyclerViewAdapters    = new RecyclerViewAdapters(getContext(), postArrayList);
                     recyclerViewAdapters.setPostArrayList(postArrayList);
                     recyclerView.setAdapter(recyclerViewAdapters);

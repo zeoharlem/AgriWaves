@@ -67,6 +67,17 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
                 @Override
                 public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
                     holder.imageView.setImageBitmap(response.getBitmap());
+                    /**
+                     * OnclickListener on ImageView
+                     */
+                    holder.imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent   = new Intent(context, StoryActivity.class);
+                            intent.putExtra("blogId", post.getPostId());
+                            context.startActivity(intent);
+                        }
+                    });
                 }
 
                 @Override
@@ -75,6 +86,17 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
                 }
             });
         }
+        /**
+         * OnclickListener on Title Header
+         */
+        holder.textViewHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent   = new Intent(context, StoryActivity.class);
+                intent.putExtra("blogId", post.getPostId());
+                context.startActivity(intent);
+            }
+        });
 
         holder.buttonWatch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,9 +165,8 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         intent.setType("text/plain");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra(Intent.EXTRA_SUBJECT, post.getPostTitle());
-        intent.putExtra(Intent.EXTRA_TEXT, "Just Watched this "+post.getPostTitle()
-                            + Helpers.URL_STRING + "/blog/viewpage?blog="+post.getPostId());
-        context.startActivity(Intent.createChooser(intent, "Shared from AgriwavesTv Mobile App"));
+        intent.putExtra(Intent.EXTRA_TEXT, "Just Read this "+post.getPostTitle()+" "+Helpers.URL_STRING + "/blog/viewpage?blog="+post.getPostId());
+        context.startActivity(Intent.createChooser(intent, "Shared from AgriwavesTV Mobile App"));
     }
 
     @Override

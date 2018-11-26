@@ -209,9 +209,8 @@ public class StoryActivity extends HomeActivity implements View.OnClickListener{
         intent.setType("text/plain");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra(Intent.EXTRA_SUBJECT, post.getPostTitle());
-        intent.putExtra(Intent.EXTRA_TEXT, "Just Read this "+post.getPostTitle()
-                + Helpers.URL_STRING + "/blog/viewpage?blog="+post.getPostId());
-        startActivity(Intent.createChooser(intent, "Shared from AgriwavesTv Mobile App"));
+        intent.putExtra(Intent.EXTRA_TEXT, "Just Read this "+post.getPostTitle()+ Helpers.URL_STRING + "/blog/viewpage?blog="+post.getPostId());
+        startActivity(Intent.createChooser(intent, "Shared from AgriwavesTV Mobile App"));
     }
 
     private void shareViaMail(Blog post){

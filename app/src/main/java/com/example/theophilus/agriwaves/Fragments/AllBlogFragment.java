@@ -71,6 +71,7 @@ public class AllBlogFragment extends Fragment {
         progressBar     = view.findViewById(R.id.progressBarRow);
 
         if(savedInstanceState != null){
+            progressBar.setVisibility(View.GONE);
             blogArrayList          = savedInstanceState.getParcelableArrayList(BLOG_LIST);
             blogRecyclerAdapter    = new BlogRecyclerAdapter(getContext(), blogArrayList);
             recyclerView.setAdapter(blogRecyclerAdapter);
@@ -79,6 +80,7 @@ public class AllBlogFragment extends Fragment {
             getTaskJsonRow(new VolleyCallback() {
                 @Override
                 public void onSuccess(ArrayList<Blog> blogArrayList) {
+                    progressBar.setVisibility(View.GONE);
                     blogRecyclerAdapter    = new BlogRecyclerAdapter(getContext(), blogArrayList);
                     blogRecyclerAdapter.setBlogArrayList(blogArrayList);
                     recyclerView.setAdapter(blogRecyclerAdapter);

@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/shareNow"
-        android:icon="@drawable/ic_sharer"
-        android:title="Share">
+        android:title="Share Now">
 
     </item>
     <item
         android:id="@+id/likeVideo"
-        android:icon="@drawable/ic_heart"
-        android:title="Like Video">
+        android:title="Like Now">
 
     </item>
     <item
         android:id="@+id/watchLater"
-        android:icon="@drawable/ic_play_button"
         android:title="Watch Later">
 
     </item>

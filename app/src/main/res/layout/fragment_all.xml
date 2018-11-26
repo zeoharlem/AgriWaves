@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.theophilus.agriwaves.Fragments.AllFragment">
+    tools:context="com.example.theophilus.agriwaves.Fragments.AllFragment"
+    android:id="@+id/rootViewRow">
 
     <!-- TODO: Update blank fragment layout -->
     <!--<include layout="@layout/single_item_card_view">-->
@@ -27,5 +28,5 @@
         android:padding="10dp"
         android:textAlignment="center"
         android:tooltipText="Loading..."
-        android:visibility="gone" />
+        android:visibility="visible" />
 </FrameLayout>

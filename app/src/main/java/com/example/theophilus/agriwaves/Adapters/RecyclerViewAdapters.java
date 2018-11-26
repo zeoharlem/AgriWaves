@@ -93,6 +93,17 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
                 @Override
                 public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
                     holder.imageView.setImageBitmap(response.getBitmap());
+                    /**
+                     * OnclickListener on ImageView
+                     */
+                    holder.imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent   = new Intent(context, VideoPlayerActivity.class);
+                            intent.putExtra("videoId", post.getVideoId());
+                            context.startActivity(intent);
+                        }
+                    });
                 }
 
                 @Override
@@ -101,6 +112,17 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
                 }
             });
         }
+        /**
+         * OnclickListener on TitleHeader
+         */
+        holder.textViewHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent   = new Intent(context, VideoPlayerActivity.class);
+                intent.putExtra("videoId", post.getVideoId());
+                context.startActivity(intent);
+            }
+        });
 
         //set the watch vid clickListener
         holder.buttonWatch.setOnClickListener(new View.OnClickListener() {
@@ -172,9 +194,8 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
         intent.setType("text/plain");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra(Intent.EXTRA_SUBJECT, post.getPostTitle());
-        intent.putExtra(Intent.EXTRA_TEXT, "Just Watched this "+post.getPostTitle()
-                + " https://www.youtube.com/watch?v="+post.getVideoId());
-        context.startActivity(Intent.createChooser(intent, "Shared from AgriwavesTv Mobile App"));
+        intent.putExtra(Intent.EXTRA_TEXT, "Just Watched this "+post.getPostTitle()+ " https://www.youtube.com/watch?v="+post.getVideoId());
+        context.startActivity(Intent.createChooser(intent, "Shared from AgriwavesTV Mobile App"));
     }
 
     @Override

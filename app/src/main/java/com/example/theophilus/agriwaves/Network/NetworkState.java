@@ -17,15 +17,25 @@ public class NetworkState {
     }
 
     public static NetworkState getInstance(){
-        if(NetworkState.instance.equals(null)){
+        if(NetworkState.instance == null){
             NetworkState.instance   = new NetworkState();
         }
         return NetworkState.instance;
     }
 
-    public boolean checkNetwork(Context context){
+    public void msgTaskRow(Context context,String message, NetworkInformer networkInformer){
+        if(!getTaskConnectRow(context)){
+            networkInformer.informUser(message);
+        }
+    }
+
+    public boolean getTaskConnectRow(Context context){
         ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo     = manager.getActiveNetworkInfo();
         return (networkInfo != null && networkInfo.isConnected());
+    }
+
+    public interface NetworkInformer{
+        void informUser(String message);
     }
 }
