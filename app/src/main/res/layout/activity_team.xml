@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.theophilus.agriwaves.Activities.TeamActivity">
+    tools:context="com.tosinorojinmi.theophilus.agriwaves.Activities.TeamActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLay"
@@ -48,7 +48,7 @@
                 android:layout_height="1dp"
                 android:background="#aaaaaa" />
 
-            <com.example.theophilus.agriwaves.Utils.JustifyTextView
+            <com.tosinorojinmi.theophilus.agriwaves.Utils.JustifyTextView
                 android:id="@+id/felix_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
                 android:layout_height="1dp"
                 android:background="#aaaaaa" />
 
-            <com.example.theophilus.agriwaves.Utils.JustifyTextView
+            <com.tosinorojinmi.theophilus.agriwaves.Utils.JustifyTextView
                 android:id="@+id/eric_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
                 android:layout_height="1dp"
                 android:background="#aaaaaa" />
 
-            <com.example.theophilus.agriwaves.Utils.JustifyTextView
+            <com.tosinorojinmi.theophilus.agriwaves.Utils.JustifyTextView
                 android:id="@+id/bilyaminu_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
                 android:layout_height="1dp"
                 android:background="#aaaaaa" />
 
-            <com.example.theophilus.agriwaves.Utils.TextViewJustify
+            <com.tosinorojinmi.theophilus.agriwaves.Utils.TextViewJustify
                 android:id="@+id/martins_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
                 android:textColor="#111111"
                 android:textSize="13sp" />
 
-            <com.example.theophilus.agriwaves.Utils.JustifyTextView
+            <com.tosinorojinmi.theophilus.agriwaves.Utils.JustifyTextView
                 android:id="@+id/others"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

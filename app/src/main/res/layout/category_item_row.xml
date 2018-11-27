@@ -7,7 +7,7 @@
     android:paddingTop="10dp">
 
 
-    <com.example.theophilus.agriwaves.Utils.CircularTextView
+    <com.tosinorojinmi.theophilus.agriwaves.Utils.CircularTextView
         android:id="@+id/circularTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

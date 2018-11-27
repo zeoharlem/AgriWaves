@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.theophilus.agriwaves">
+    package="com.tosinorojinmi.theophilus.agriwaves">
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,32 +16,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.tosinorojinmi.theophilus.agriwaves.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity" />
+        <activity android:name="com.tosinorojinmi.theophilus.agriwaves.HomeActivity" />
         <activity
-            android:name=".Activities.VideoPlayerActivity"
+            android:name="com.tosinorojinmi.theophilus.agriwaves.Activities.VideoPlayerActivity"
             android:noHistory="true" />
         <activity
-            android:name=".Activities.SeriesEpisodeActivity"
+            android:name="com.tosinorojinmi.theophilus.agriwaves.Activities.SeriesEpisodeActivity"
             android:noHistory="true" />
-        <activity android:name=".BlogActivity" />
+        <activity android:name="com.tosinorojinmi.theophilus.agriwaves.BlogActivity" />
         <activity
-            android:name=".Activities.StoryActivity"
+            android:name="com.tosinorojinmi.theophilus.agriwaves.Activities.StoryActivity"
             android:noHistory="true" />
         <activity
-            android:name=".Activities.CategoryPostActivity"
+            android:name="com.tosinorojinmi.theophilus.agriwaves.Activities.CategoryPostActivity"
             android:noHistory="true" />
-        <activity android:name=".Activities.BlogListActivity" />
-        <activity android:name=".Activities.SeriesActivity" />
-        <activity android:name=".Activities.AboutActivity" />
-        <activity android:name=".Activities.ContactActivity" />
-        <activity android:name=".Activities.TeamActivity"></activity>
+        <activity android:name="com.tosinorojinmi.theophilus.agriwaves.Activities.BlogListActivity" />
+        <activity android:name="com.tosinorojinmi.theophilus.agriwaves.Activities.SeriesActivity" />
+        <activity android:name="com.tosinorojinmi.theophilus.agriwaves.Activities.AboutActivity" />
+        <activity android:name="com.tosinorojinmi.theophilus.agriwaves.Activities.ContactActivity" />
+        <activity android:name="com.tosinorojinmi.theophilus.agriwaves.Activities.TeamActivity"></activity>
     </application>
 
 </manifest>

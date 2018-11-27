@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.theophilus.agriwaves.Activities.AboutActivity">
+    tools:context="com.tosinorojinmi.theophilus.agriwaves.Activities.AboutActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLay"
@@ -34,7 +34,7 @@
                 android:paddingTop="20dp"
                 android:src="@drawable/small_logo" />
 
-            <com.example.theophilus.agriwaves.Utils.JustifyTextView
+            <com.tosinorojinmi.theophilus.agriwaves.Utils.JustifyTextView
                 android:id="@+id/about_first"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <com.example.theophilus.agriwaves.Utils.JustifyTextView
+            <com.tosinorojinmi.theophilus.agriwaves.Utils.JustifyTextView
                 android:id="@+id/about_second"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <com.example.theophilus.agriwaves.Utils.JustifyTextView
+            <com.tosinorojinmi.theophilus.agriwaves.Utils.JustifyTextView
                 android:id="@+id/about_third"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <com.example.theophilus.agriwaves.Utils.JustifyTextView
+            <com.tosinorojinmi.theophilus.agriwaves.Utils.JustifyTextView
                 android:id="@+id/about_fourth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

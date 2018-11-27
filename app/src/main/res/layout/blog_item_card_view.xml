@@ -73,7 +73,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/wamitvblcok" />
 
-            <com.example.theophilus.agriwaves.Utils.TextViewJustify
+            <com.tosinorojinmi.theophilus.agriwaves.Utils.TextViewJustify
                 android:id="@+id/fullDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

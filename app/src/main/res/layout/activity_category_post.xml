@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.theophilus.agriwaves.Activities.CategoryPostActivity">
+    tools:context="com.tosinorojinmi.theophilus.agriwaves.Activities.CategoryPostActivity">
 
 
     <android.support.design.widget.AppBarLayout
