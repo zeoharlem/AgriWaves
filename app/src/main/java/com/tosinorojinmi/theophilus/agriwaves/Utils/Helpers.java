@@ -16,7 +16,8 @@ public class Helpers {
     public static final String ForgotPassword_Fragment = "ForgotPassword_Fragment";
 //    public static final String URL_STRING   = "http://192.168.16.2/ducafeteria/api";
 //    public static final String URL_STRING   = "http://10.0.2.2/apiv1";
-    public static final String URL_STRING   = "http://agriwavestv.com/apiv1";
+    
+    
 
     public static boolean validate(EditText[] fields){
         for(int i = 0; i < fields.length; i++){
